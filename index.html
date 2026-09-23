@@ -577,7 +577,7 @@
           3. Update the 'alt' text to describe your image.
         -->
         <div class="card-img-container">
-          <img src="fusion-render.jpg" 
+          <img src="fusion-render.png" 
                onerror="this.onerror=null;this.src='https://placehold.co/600x400/181f1c/4ecb8d?text=Fusion+360+CAD+Render';" 
                alt="Fusion 360 Enclosure Render" 
                class="card-img">
@@ -599,7 +599,7 @@
           2. Change 'src="circuit-wiring.jpg"' to your filename.
         -->
         <div class="card-img-container">
-          <img src="circuit-wiring.jpg" 
+          <img src="physical-model.png" 
                onerror="this.onerror=null;this.src='https://placehold.co/600x400/181f1c/4ecb8d?text=Arduino+%2B+Relay+Setup';" 
                alt="Arduino, Relay, and Sensor Circuit Wiring" 
                class="card-img">
@@ -610,13 +610,13 @@
       </div>
     </div>
 
-    <div class="code-block">
-<span class="code-comment">// Core irrigation trigger — reads sensor, activates pump</span>
+    <pre class="code-block">
+<span class="code-comment">// Core irrigation trigger – reads sensor, activates pump</span>
 <span class="code-keyword">int</span> moisture = <span class="code-fn">analogRead</span>(<span class="code-num">A0</span>);
 <span class="code-keyword">int</span> threshold = <span class="code-num">450</span>; <span class="code-comment">// ~15% soil moisture</span>
 <span class="code-keyword">if</span> (moisture > threshold) { <span class="code-fn">digitalWrite</span>(<span class="code-num">RELAY_PIN</span>, HIGH); }
-<span class="code-keyword">else</span>                        { <span class="code-fn">digitalWrite</span>(<span class="code-num">RELAY_PIN</span>, LOW);  }
-    </div>
+<span class="code-keyword">else</span> { <span class="code-fn">digitalWrite</span>(<span class="code-num">RELAY_PIN</span>, LOW); }
+</pre>
 
     <br><br>
     <div class="section-label" style="margin-bottom: 1.5rem;">03 — Data &amp; Iteration Log</div>
@@ -659,15 +659,15 @@
       -->
       <div class="field-img-grid">
         <div class="field-img-container">
-          <img src="gardens-by-the-bay-1.jpg" 
+          <img src="supertree-grove.png" 
                onerror="this.onerror=null;this.src='https://placehold.co/600x400/181f1c/4ecb8d?text=Supertree+Grove+Photo';" 
                alt="Gardens by the Bay Supertree Grove" 
                class="field-img">
         </div>
         <div class="field-img-container">
-          <img src="gardens-by-the-bay-2.jpg" 
+          <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=800&q=80" 
                onerror="this.onerror=null;this.src='https://placehold.co/600x400/181f1c/4ecb8d?text=Greywater+Reuse+Diagram';" 
-               alt="Water Recycling Infrastructure Notes" 
+               alt="Singapore Sustainable Infrastructure" 
                class="field-img">
         </div>
       </div>
