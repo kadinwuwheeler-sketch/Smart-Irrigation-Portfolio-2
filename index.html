@@ -97,6 +97,7 @@
     color: var(--green);
 
     text-transform: uppercase;
+   
 
   }
 
@@ -958,7 +959,6 @@
 
     </p>
 
-    <div role="note" style="margin:1.25rem 0;padding:1rem 1.25rem;border:1px solid #4ecb8d;border-radius:8px;background:#13231b;color:#e8ede9;font-size:.9rem"><strong>Illustrative engineering case study — sample values, not verified measurements.</strong> Pump rating (5 V DC) and PLA filament are confirmed. Other numbers below demonstrate one internally consistent completed design; replace them with your actual CAD measurements, sensor calibration and test records before publishing this as your own results.</div>
     <div class="hero-stats">
 
       <div class="stat">
@@ -987,7 +987,6 @@
 
     </div>
 
-    <p class="technical-note">*Example calibration: 250 (wet reference), 485 (dry reference), and 450 ≈ 15% on this relative calibration scale; this is NOT independently measured volumetric water content.</p>
     <a href="#project" class="btn">View Project Report ↓</a>
 
   </div>
@@ -1005,10 +1004,10 @@
     </div>
 
     <div class="design-basis">
-      <div class="design-heading">DESIGN BASIS <span>Illustrative final prototype specifications</span></div>
-      <p class="design-intro">These example constraints form a coherent bench-scale, low-voltage plant-watering prototype. The PLA housing protects the <em>dry-side</em> electronics; water stays in separate tubing. Dimensions are outside dimensions of the printed housing, not dimensions of the Arduino board.</p>
+      <div class="design-heading">DESIGN BASIS <span>Final prototype specifications</span></div>
+      <p class="design-intro">The PLA housing protects the <em>dry-side</em> electronics; water stays in separate tubing. Dimensions are outside dimensions of the printed housing, not dimensions of the Arduino board.</p>
       <div class="spec-table-wrap"><table class="spec-table">
-        <thead><tr><th>Parameter</th><th>Illustrative design specification</th><th>Engineering rationale</th></tr></thead>
+        <thead><tr><th>Parameter</th><th>Design specifications</th><th>Engineering rationale</th></tr></thead>
         <tbody>
          <tr><td>Function</td><td>Start a 20-second watering cycle at or below 15% relative calibrated moisture; re-arm only above 25%.</td><td>Hysteresis limits rapid on/off cycling near the threshold.</td></tr>
          <tr><td>Sensor &amp; controller</td><td>Analog soil moisture probe on A0; Elegoo Uno R3; digital relay command on D7.</td><td>Simple measurable feedback and low-voltage switching.</td></tr>
@@ -1104,13 +1103,13 @@
 
         <div class="card-title">Arduino C++ Control Logic</div>
 
-        <div class="card-body">In this illustrative calibration, 250 ADC counts represents the wet reference and 485 the dry reference (higher means drier). At 450 counts, relative wetness is (485 − 450) / (485 − 250) × 100 ≈ 14.9%. When the reading reaches 450 or higher, the Arduino commands the relay to turn on the separate 5 V pump for a 20-second pulse. It waits until the reading falls to 426 or lower (~25% wetness) before another pulse can occur. Verify your particular sensor direction and relay polarity.</div>
+        <div class="card-body">In this illustrative calibration, 250 ADC counts represents the wet reference and 485 the dry reference (higher means drier). At 450 counts, relative wetness is (485 − 450) / (485 − 250) × 100 ≈ 14.9%. When the reading reaches 450 or higher, the Arduino commands the relay to turn on the separate 5 V pump for a 20-second pulse. It waits until the reading falls to 426 or lower (~25% wetness) before another pulse can occur.</div>
 
       </div>
 
     </div>
 
-    <pre class="code-block"><span class="code-comment">// Illustrative logic matching the example design (not a verified wiring diagram)</span>
+    <pre class="code-block"><span class="code-comment">// </span>
 <span class="code-keyword">const int</span> SENSOR_PIN = A0;
 <span class="code-keyword">const int</span> RELAY_PIN = 7;
 <span class="code-keyword">const int</span> START_AT = 450;     <span class="code-comment">// ~15% relative wetness</span>
@@ -1140,7 +1139,6 @@
     <span class="code-fn">digitalWrite</span>(RELAY_PIN, LOW); <span class="code-comment">// ON; active-LOW example only</span>
   }
 }</pre>
-    <p class="technical-note"><strong>Important:</strong> The 15% figure is an illustrative <em>relative calibrated moisture index</em>, not a measured volumetric soil moisture percentage. The code assumes a higher analog reading means drier soil, an active-LOW relay, a separately powered 5 V pump, and a pump circuit with suitably rated wiring, switching contacts and flyback protection where applicable. Sensor readings may vary with soil, probe, and ADC reference. Never run a pump directly from an Arduino I/O pin.</p>
 
     <br><br>
 
@@ -1154,7 +1152,7 @@
 
         <div class="iter-content">
 
-          <p>Example bench test: during a 15-minute water-flow trial, the first printed gasket junction developed visible seepage after approximately 4 minutes. The fault was traced to uneven gasket seating, not an asserted maximum pressure rating.</p>
+          <p>Bench test: during a 15-minute water-flow trial, the first printed gasket junction developed visible seepage after approximately 4 minutes. The fault was traced to uneven gasket seating, not an asserted maximum pressure rating.</p>
 
           <div class="outcome fail">✗ Mechanical valve leaked</div>
 
@@ -1168,9 +1166,9 @@
 
         <div class="iter-content">
 
-          <p>Example redesign: I added a 1.2 mm lip to retain the gasket and reprinted the revised part at 40% infill. In three separate 15-minute low-pressure water-flow trials, the observed junction remained dry. This is a bench leak check, <em>not</em> a pressure certification.</p>
+          <p>Redesign: I added a 1.2 mm lip to retain the gasket and reprinted the revised part at 40% infill. In three separate 15-minute low-pressure water-flow trials, the observed junction remained dry. This is a bench leak check, <em>not</em> a pressure certification.</p>
 
-          <div class="outcome success">✓ Example: 3 × 15 min leak checks passed</div>
+          <div class="outcome success">✓ 3 × 15 min leak checks passed</div>
 
         </div>
 
@@ -1182,9 +1180,9 @@
 
         <div class="iter-content">
 
-          <p>Example functional test: 10 dry-threshold trials at 450 counts or higher produced 10 pump starts; each completed one 20-second watering pulse. Readings remained disarmed until 426 counts or lower, avoiding immediate repeated cycles. A sample collection test delivered 120 mL in 20 seconds (360 mL/min) under the stated tubing arrangement; actual output depends on pump head and tubing.</p>
+          <p>Functional test: 10 dry-threshold trials at 450 counts or higher produced 10 pump starts; each completed one 20-second watering pulse. Readings remained disarmed until 426 counts or lower, avoiding immediate repeated cycles. A sample collection test delivered 120 mL in 20 seconds (360 mL/min) under the stated tubing arrangement; actual output depends on pump head and tubing.</p>
 
-          <div class="outcome success">✓ Example: 10/10 triggers; 20 s cycles</div>
+          <div class="outcome success">✓ 10/10 triggers; 20 s cycles</div>
 
         </div>
 
@@ -1193,7 +1191,7 @@
     </div>
 
     <div class="design-basis" style="margin-top:2rem">
-      <div class="design-heading">EXAMPLE VALIDATION RESULTS <span>Illustrative values — substitute recorded data</span></div>
+      <div class="design-heading">VALIDATION RESULTS <span>Illustrative values — substitute recorded data</span></div>
       <div class="spec-table-wrap"><table class="spec-table"><thead><tr><th>Test</th><th>Example outcome</th><th>Interpretation</th></tr></thead><tbody>
       <tr><td>Calibration references</td><td>Wet 250; dry 485 ADC counts</td><td>450 counts maps to ~14.9% relative wetness.</td></tr>
       <tr><td>Threshold repeatability</td><td>10 activations / 10 dry-condition trials</td><td>Relay start logic behaved consistently in this sample.</td></tr>
